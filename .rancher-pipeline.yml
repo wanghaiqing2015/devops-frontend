@@ -4,9 +4,9 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: registry.cn-hangzhou.aliyuncs.com/wanghaiqing/devops-frontend:${CICD_EXECUTION_SEQUENCE}
+      tag: 118.24.103.71:30020/root/devops-frontend:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
-      registry: registry.cn-hangzhou.aliyuncs.com
+      registry: 118.24.103.71:30020
     env:
       PLUGIN_DEBUG: "true"
       PLUGIN_INSECURE: "true"
