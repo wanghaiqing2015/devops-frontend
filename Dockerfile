@@ -1,5 +1,5 @@
-# FROM node:10-alpine3.9 as builder
-FROM node:12 as builder
+FROM node:10-alpine3.9 as builder
+# FROM node:12 as builder
 WORKDIR /code
 COPY . .
 
