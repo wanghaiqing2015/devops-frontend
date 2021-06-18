@@ -9,9 +9,9 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 8080       #port是k8s集群内部访问service的端口，即通过clusterIP:port可以访问到某个service
-      targetPort: 8080 #容器的端口(最根本的端口)，与制作容器时暴露的端口一致(DockerFile中EXPOSE)
-      nodePort: 30002   #nodePort是外部访问k8s集群中service的端口，通过nodeIP:nodePort可以从外部访问到某个service;有效端口范围:30000-32767
+      port: 80       #port是k8s集群内部访问service的端口，即通过clusterIP:port可以访问到某个service
+      targetPort: 80 #容器的端口(最根本的端口)，与制作容器时暴露的端口一致(DockerFile中EXPOSE)
+      nodePort: 30006   #nodePort是外部访问k8s集群中service的端口，通过nodeIP:nodePort可以从外部访问到某个service;有效端口范围:30000-32767
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,7 +37,7 @@ spec:
           image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}  #镜像仓库的路径/镜像的名称:镜像的标签
           imagePullPolicy: Always  #Always(总是去仓库下载),Never(从不去仓库下载),IfNotPresent(如果本地没有就去仓库下载),默认是"IfNotPresent"
           ports:
-            - containerPort: 8080 #containerPort是pod内部容器的端口，targetPort映射到containerPort;例如，mysql服务需要暴露3306端口，redis暴露6379端口
+            - containerPort: 80 #containerPort是pod内部容器的端口，targetPort映射到containerPort;例如，mysql服务需要暴露3306端口，redis暴露6379端口
           volumeMounts:
             - mountPath: /etc/localtime
               name: tz-config
